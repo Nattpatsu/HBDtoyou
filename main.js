@@ -1,6 +1,6 @@
 //general data
 const myName = "คุณไซน์";
-const myDateofbirthday = new Date("1999/03/21");
+const myDateofbirthday = new Date("1999/03/23");
 
 //date happy birthday
 const myDayofbirthday = myDateofbirthday.getDate();
