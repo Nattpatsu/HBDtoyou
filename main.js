@@ -59,7 +59,7 @@ const HBDcelebrate = () => {
 
   console.log(numRandom);
 
-  tagyearold.innerHTML = `ยินดีด้วยคุณ ${myName} อายุครบ ${birthdayYear} ปี`;
+  tagyearold.innerHTML = `ยินดีด้วยคุณ${myName}อายุครบ ${birthdayYear} ปี`;
   tagblessword.innerHTML = wishes[numRandom];
 };
 
