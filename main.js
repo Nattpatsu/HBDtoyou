@@ -1,6 +1,6 @@
 //general data
 const myName = "ไซน์";
-const myDateofbirthday = new Date("1999/03/25");
+const myDateofbirthday = new Date("1999/03/23");
 
 //date happy birthday
 const myDayofbirthday = myDateofbirthday.getDate();
@@ -49,8 +49,24 @@ const wishes = [
 
 //all fn
 
+const realTime = (selector) => {
+  const currenttime = new Date();
+  switch (selector) {
+    case "day":
+      return currenttime.getDate();
+    case "month":
+      return currenttime.getMonth() + 1; // +1 เพราะ getMonth() เริ่มที่ 0
+    case "year":
+      return currenttime.getFullYear();
+    case "current":
+      return currenttime;
+    default:
+      return "Invalid type"; // กรณีที่ไม่ได้ใส่ค่าที่ถูกต้อง
+  }
+};
+
 const HBDcelebrate = () => {
-  const birthdayYear = currentYear - myYearofbitthday;
+  const birthdayYear = realTime("year") - myYearofbitthday;
 
   tagblass.classList.toggle("hidden");
   tagtimecountdown.classList.add("hidden");
@@ -66,19 +82,19 @@ const HBDcelebrate = () => {
 //fn check what is date of your birhtday?
 const nextBirthday = () => {
   let nextMybirthday = new Date(
-    currentYear,
+    realTime("year"),
     myMonthofbirthday,
     myDayofbirthday
   );
-  if (nextMybirthday < currenttime) {
-    nextMybirthday.setFullYear(currentYear + 1);
+  if (nextMybirthday < realTime("current")) {
+    nextMybirthday.setFullYear(realTime("year") + 1);
   }
   console.log(`next birthday: ${nextMybirthday}`);
   return nextMybirthday;
 };
 
 const countDowntime = () => {
-  const timeDiff = nextBirthday() - new Date();
+  const timeDiff = nextBirthday() - realTime("current");
 
   console.log(timeDiff);
 
@@ -98,8 +114,8 @@ const countDowntime = () => {
   //check date of birthday
 
   if (
-    myDayofbirthday === currentDay &&
-    myMonthofbirthday + 1 === currentMonth + 1
+    myDayofbirthday === realTime("day") &&
+    myMonthofbirthday + 1 === realTime("month")
   ) {
     HBDcelebrate();
   } else {
@@ -107,9 +123,9 @@ const countDowntime = () => {
     setTimeout(countDowntime, 1000);
     console.log(
       myDayofbirthday,
-      currentDay,
+      realTime("day"),
       myMonthofbirthday + 1,
-      currentMonth + 1
+      realTime("month")
     );
   }
 };
